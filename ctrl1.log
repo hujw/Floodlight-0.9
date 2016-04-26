@@ -1,0 +1,66 @@
+17:21:12.332 INFO [n.f.c.m.FloodlightModuleLoader:main] Loading modules from file ctrl/ctrl1.properties
+17:21:12.608 INFO [n.f.c.i.Controller:main] Controller role set to MASTER
+17:21:12.614 INFO [n.f.c.i.Controller:main] Flush switches on reconnect -- Disabled
+17:21:12.874 ERROR [o.s.s.i.c.DelegatingCCProvider:main] Failed to initialize provider org.sdnplatform.sync.internal.config.SyncStoreCCProvider
+org.sdnplatform.sync.error.PersistException: Could not initialize persistent storage
+	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.<init>(JavaDBStorageEngine.java:106) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.StoreRegistry.register(StoreRegistry.java:116) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.SyncManager.registerPersistentStore(SyncManager.java:184) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.config.SyncStoreCCProvider.init(SyncStoreCCProvider.java:85) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.config.DelegatingCCProvider.init(DelegatingCCProvider.java:37) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.SyncManager.init(SyncManager.java:489) ~[floodlight.jar:na]
+	at net.floodlightcontroller.core.module.FloodlightModuleLoader.initModules(FloodlightModuleLoader.java:436) ~[floodlight.jar:na]
+	at net.floodlightcontroller.core.module.FloodlightModuleLoader.loadModulesFromList(FloodlightModuleLoader.java:353) ~[floodlight.jar:na]
+	at net.floodlightcontroller.core.module.FloodlightModuleLoader.loadModulesFromList(FloodlightModuleLoader.java:362) ~[floodlight.jar:na]
+	at net.floodlightcontroller.core.module.FloodlightModuleLoader.loadModulesFromConfig(FloodlightModuleLoader.java:200) ~[floodlight.jar:na]
+	at net.floodlightcontroller.core.Main.main(Main.java:55) ~[floodlight.jar:na]
+Caused by: java.sql.SQLException: Failed to create database 'SyncDB', see the next exception for details.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.EmbedConnection.createDatabase(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.EmbeddedDataSource.getConnection(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.EmbedPooledConnection.openRealConnection(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.EmbedPooledConnection.<init>(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.EmbedPooledConnection40.<init>(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.Driver40.getNewPooledConnection(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.EmbeddedConnectionPoolDataSource.createPooledConnection(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.jdbc.EmbeddedConnectionPoolDataSource.getPooledConnection(Unknown Source) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.getConnection(JavaDBStorageEngine.java:368) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.initTable(JavaDBStorageEngine.java:375) ~[floodlight.jar:na]
+	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.<init>(JavaDBStorageEngine.java:104) ~[floodlight.jar:na]
+	... 10 common frames omitted
+Caused by: org.apache.derby.impl.jdbc.EmbedSQLException: Failed to create database 'SyncDB', see the next exception for details.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source) ~[floodlight.jar:na]
+	... 29 common frames omitted
+Caused by: org.apache.derby.impl.jdbc.EmbedSQLException: The database directory '/home/nchc/FL_pure/floodlight/SyncDB' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source) ~[floodlight.jar:na]
+	... 26 common frames omitted
+Caused by: org.apache.derby.iapi.error.StandardException: The database directory '/home/nchc/FL_pure/floodlight/SyncDB' exists. However, it does not contain the expected 'service.properties' file. Perhaps Derby was brought down in the middle of creating this database. You may want to delete this directory and try creating the database again.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.services.monitor.StorageFactoryService.vetService(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.services.monitor.StorageFactoryService.access$900(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.services.monitor.StorageFactoryService$9.run(Unknown Source) ~[floodlight.jar:na]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.6.0_27]
+	at org.apache.derby.impl.services.monitor.StorageFactoryService.createServiceRoot(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.services.monitor.BaseMonitor.bootService(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.impl.services.monitor.BaseMonitor.createPersistentService(Unknown Source) ~[floodlight.jar:na]
+	at org.apache.derby.iapi.services.monitor.Monitor.createPersistentService(Unknown Source) ~[floodlight.jar:na]
+	... 26 common frames omitted
+17:21:13.005 INFO [n.f.l.i.LinkDiscoveryManager:main] Setting autoportfast feature to OFF
+17:21:13.065 INFO [o.s.s.i.c.FallbackCCProvider:main] Cluster not yet configured; using fallback local configuration
+17:21:13.066 INFO [o.s.s.i.SyncManager:main] [32767] Updating sync configuration ClusterConfig [allNodes={32767=Node [hostname=localhost, port=6642, nodeId=32767, domainId=32767]}, authScheme=NO_AUTH, keyStorePath=null, keyStorePassword is unset]
+17:21:13.148 INFO [o.s.s.i.r.RPCService:main] Listening for internal floodlight RPC on localhost/127.0.0.1:6642
+17:21:13.384 INFO [n.f.c.i.Controller:main] Listening for switch connections on 0.0.0.0/0.0.0.0:20000
